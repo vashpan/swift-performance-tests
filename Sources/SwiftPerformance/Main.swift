@@ -14,10 +14,10 @@ import Foundation
 
     private static let seed: UInt64 = 580340432343
     private static let sizeOfDatabase = 1_000_000
-    private static let testIterations = 10_000
+    private static let testIterations = 10
 
     private static let benchmarks: [any Benchmark] = [
-        // todo: add some benchmarks here
+        FilteringBenchmark()
     ]
 
     // MARK: Start app
@@ -38,20 +38,21 @@ import Foundation
         for b in benchmarks {
             stopwatch.start()
             write(b.description + " (boomer)")
-            let boomerResult = b.runAsBoomer(data: persons)
+            for _ in 0..<Self.testIterations {
+                let boomerResult = b.runAsBoomer(data: persons)
+                guard boomerResult == b.expectedResult else { error("Unexpected result: \(boomerResult)! Expected: \(b.expectedResult)"); break }
+            }
             let boomerTime = stopwatch.stop()
             writeLine("\t👴: \(Self.timeFormatted(boomerTime))")
 
             stopwatch.start()
             write(b.description + " (zoomer)")
-            let zoomerResult = b.runAsZoomer(data: persons)
+            for _ in 0..<Self.testIterations {
+                let zoomerResult = b.runAsZoomer(data: persons)
+                guard zoomerResult == b.expectedResult else { error("Unexpected result: \(zoomerResult)! Expected: \(b.expectedResult)"); break }
+            }
             let zoomerTime = stopwatch.stop()
             writeLine("\t👦: \(Self.timeFormatted(zoomerTime))")
-
-            guard boomerResult == zoomerResult else {
-                error("Unexpected result!")
-                break
-            }
 
             writeLine()
         }
