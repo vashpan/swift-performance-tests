@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug SwiftPerformance",
+            "program": "${workspaceFolder:SwiftPerformance}/.build/debug/SwiftPerformance",
+            "args": [],
+            "cwd": "${workspaceFolder:SwiftPerformance}",
+            "preLaunchTask": "swift: Build Debug SwiftPerformance"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Release SwiftPerformance",
+            "program": "${workspaceFolder:SwiftPerformance}/.build/release/SwiftPerformance",
+            "args": [],
+            "cwd": "${workspaceFolder:SwiftPerformance}",
+            "preLaunchTask": "swift: Build Release SwiftPerformance"
+        }
+    ]
+}
