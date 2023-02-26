@@ -8,15 +8,14 @@
 
 public final class FilteringBenchmark: Benchmark {
     public let description: String = "Test filtering"
-    public let expectedResult: Int = 1849
+    public let expectedResult: Int = 589294
 
     public func runAsBoomer(data: [Person]) -> Int {
-        let nameToFind = "Piotrek Nowak"
+        let nameToFind = "Piotrek"
 
         var numberOfPersonsFound = 0
         for p in data {
-            let name = "\(p.name) \(p.surname)"
-            if name == nameToFind {
+            if p.name == nameToFind {
                 numberOfPersonsFound += 1
             }
         }
@@ -25,6 +24,6 @@ public final class FilteringBenchmark: Benchmark {
     }
 
     public func runAsZoomer(data: [Person]) -> Int {
-        return data.filter { "\($0.name) \($0.surname)" == "Piotrek Nowak" }.count
+        return data.filter { $0.name == "Piotrek" }.count
     }
 }
