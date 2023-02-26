@@ -26,12 +26,13 @@ import Foundation
         #if DEBUG
         return 1
         #else
-        return 20
+        return 10
         #endif
     }
 
     private static let benchmarks: [any Benchmark] = [
-        FilteringBenchmark()
+        FilteringBenchmark(),
+        MappingBenchmark()
     ]
 
     // MARK: Start app
