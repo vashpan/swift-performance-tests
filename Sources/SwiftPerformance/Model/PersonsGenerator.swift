@@ -20,13 +20,14 @@ public class PersonsGenerator {
         "Chmielewski", "Adamczyk", "Sikorski", "Mróz", "Czarnecki", "Witkowski", "Kubiak"
     ]
 
-    private static func generatePersons(amount: Int) -> [Person] {
+    public static func generatePersons(amount: Int, rng: inout some RandomNumberGenerator) -> [Person] {
         var result = [Person]()
         for _ in 0..<amount {
-            let person = Person(name: Self.names.randomElement()!, 
-                                surname: Self.surnames.randomElement()!,
-                                age: Int.random(in: 1...85))
+            let name = Self.names.randomElement(using: &rng)!
+            let surname = Self.surnames.randomElement(using: &rng)!
+            let age = Int.random(in: 1...85, using: &rng)
 
+            let person = Person(name: name, surname: surname, age: age)
             result.append(person)
         }
 
