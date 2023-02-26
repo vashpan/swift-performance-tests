@@ -7,9 +7,9 @@
 //
 
 public final class MappingBenchmark: Benchmark {
-    // map all persons to a string
-
     public let description: String = "Test mapping"
+
+    public let iterations: Int = 3
     public let expectedResult: Int = 10_000_000
 
     public func runAsBoomer(data: [Person]) -> Int {

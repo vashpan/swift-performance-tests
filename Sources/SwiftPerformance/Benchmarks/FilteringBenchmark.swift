@@ -8,6 +8,8 @@
 
 public final class FilteringBenchmark: Benchmark {
     public let description: String = "Test filtering"
+
+    public let iterations: Int = 100
     public let expectedResult: Int = 589294
 
     public func runAsBoomer(data: [Person]) -> Int {

@@ -8,6 +8,8 @@
 
 public protocol Benchmark {
     var description: String { get }
+
+    var iterations: Int { get }
     var expectedResult: Int { get }
 
     func runAsBoomer(data: [Person]) -> Int

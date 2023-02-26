@@ -21,18 +21,11 @@ import Foundation
         return 10_000_000
         #endif
     }
-    
-    private static var testIterations: Int {
-        #if DEBUG
-        return 1
-        #else
-        return 10
-        #endif
-    }
 
     private static let benchmarks: [any Benchmark] = [
         FilteringBenchmark(),
-        MappingBenchmark()
+        MappingBenchmark(),
+        ReducingBenchmark()
     ]
 
     // MARK: Start app
@@ -53,7 +46,7 @@ import Foundation
         for b in benchmarks {
             stopwatch.start()
             write(b.description + " (boomer)")
-            for _ in 0..<Self.testIterations {
+            for _ in 0..<b.iterations {
                 let boomerResult = b.runAsBoomer(data: persons)
 
                 #if !DEBUG
@@ -65,7 +58,7 @@ import Foundation
 
             stopwatch.start()
             write(b.description + " (zoomer)")
-            for _ in 0..<Self.testIterations {
+            for _ in 0..<b.iterations {
                 let zoomerResult = b.runAsZoomer(data: persons)
 
                 #if !DEBUG
