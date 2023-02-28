@@ -6,10 +6,14 @@
 //  Copyright © 2023 One Minute Games. All rights reserved.
 //
 
+//
+//  When we want to transform data from some array to another
+//
+
 public final class MappingBenchmark: Benchmark {
     public let description: String = "Test mapping"
 
-    public let iterations: Int = 3
+    public let iterations: Int = 1
     public let expectedResult: Int = 10_000_000
 
     public func runAsBoomer(data: [Person]) -> Int {

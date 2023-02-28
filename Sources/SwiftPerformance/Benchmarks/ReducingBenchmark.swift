@@ -7,7 +7,7 @@
 //
 
 //
-//  A common patter when we combining some result
+//  A common pattern when we combining some result
 //
 
 public final class ReducingBenchmark: Benchmark {

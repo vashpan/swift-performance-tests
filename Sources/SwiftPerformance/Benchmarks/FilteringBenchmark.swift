@@ -6,6 +6,10 @@
 //  Copyright © 2023 One Minute Games. All rights reserved.
 //
 
+// 
+//  A common patern that we want to find out number of items according to some rules
+//
+
 public final class FilteringBenchmark: Benchmark {
     public let description: String = "Test filtering"
 
