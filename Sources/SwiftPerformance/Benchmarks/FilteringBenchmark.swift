@@ -13,11 +13,9 @@ public final class FilteringBenchmark: Benchmark {
     public let expectedResult: Int = 589294
 
     public func runAsBoomer(data: [Person]) -> Int {
-        let nameToFind = "Piotrek"
-
         var numberOfPersonsFound = 0
         for p in data {
-            if p.name == nameToFind {
+            if p.name == "Piotrek" {
                 numberOfPersonsFound += 1
             }
         }
