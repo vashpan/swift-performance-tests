@@ -25,7 +25,8 @@ import Foundation
     private static let benchmarks: [any Benchmark] = [
         FilteringBenchmark(),
         MappingBenchmark(),
-        ReducingBenchmark()
+        ReducingBenchmark(),
+        CombinedBenchmark()
     ]
 
     // MARK: Start app
@@ -54,7 +55,7 @@ import Foundation
                 #endif
             }
             let boomerTime = stopwatch.stop()
-            writeLine("\t👴: \(Self.timeFormatted(boomerTime))")
+            writeLine("\t\t👴: \(Self.timeFormatted(boomerTime))")
 
             stopwatch.start()
             write(b.description + " (zoomer)")
@@ -66,7 +67,7 @@ import Foundation
                 #endif
             }
             let zoomerTime = stopwatch.stop()
-            writeLine("\t👦: \(Self.timeFormatted(zoomerTime))")
+            writeLine("\t\t👦: \(Self.timeFormatted(zoomerTime))")
 
             writeLine()
         }
