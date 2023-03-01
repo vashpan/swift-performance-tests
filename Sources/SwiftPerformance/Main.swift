@@ -46,7 +46,6 @@ import Foundation
         let stopwatch = Stopwatch()
         for b in benchmarks {
             stopwatch.start()
-            write(b.description + " (boomer)")
             for _ in 0..<b.iterations {
                 let boomerResult = b.runAsBoomer(data: persons)
 
@@ -55,10 +54,9 @@ import Foundation
                 #endif
             }
             let boomerTime = stopwatch.stop()
-            writeLine("\t\t👴: \(Self.timeFormatted(boomerTime))")
+            Self.writeResult(benchmark: b, adnotation: "boomer", time: boomerTime)
 
             stopwatch.start()
-            write(b.description + " (zoomer)")
             for _ in 0..<b.iterations {
                 let zoomerResult = b.runAsZoomer(data: persons)
 
@@ -67,7 +65,7 @@ import Foundation
                 #endif
             }
             let zoomerTime = stopwatch.stop()
-            writeLine("\t\t👦: \(Self.timeFormatted(zoomerTime))")
+            Self.writeResult(benchmark: b, adnotation: "zoomer", time: zoomerTime)
 
             writeLine()
         }
@@ -78,8 +76,9 @@ import Foundation
         writeLine("Swift Performance Benchmarks \(Self.version)\n")
     }
 
-    private static func timeFormatted(_ timeInterval: TimeInterval) -> String {
-        return String(format: "%0.3f s", timeInterval)
+    private static func writeResult(benchmark: Benchmark, adnotation: String, time: TimeInterval) {
+        let formattedText = String(format: "%@ (%@) %.3f s", benchmark.description, adnotation, time)
+        writeLine(formattedText)
     }
 
     private static func error(_ msg: String) {
